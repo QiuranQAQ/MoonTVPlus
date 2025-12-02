@@ -401,12 +401,14 @@ const EpisodeSelector: React.FC<EpisodeSelectorProps> = ({
 
       {/* 弹幕 Tab 内容 */}
       {activeTab === 'danmaku' && onDanmakuSelect && (
-        <DanmakuPanel
-          videoTitle={videoTitle || ''}
-          currentEpisodeIndex={value - 1}
-          onDanmakuSelect={onDanmakuSelect}
-          currentSelection={currentDanmakuSelection || null}
-        />
+        <div className='flex-1 min-h-0 overflow-hidden'>
+          <DanmakuPanel
+            videoTitle={videoTitle || ''}
+            currentEpisodeIndex={value - 1}
+            onDanmakuSelect={onDanmakuSelect}
+            currentSelection={currentDanmakuSelection || null}
+          />
+        </div>
       )}
 
       {/* 选集 Tab 内容 */}

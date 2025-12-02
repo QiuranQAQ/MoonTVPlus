@@ -2990,35 +2990,7 @@ function PlayPageClient() {
                   </div>
                 )}
 
-                {/* 弹幕源切换按钮 - 当有弹幕加载完成且不在加载中时显示 */}
-                {!danmakuLoading && currentDanmakuSelection && (
-                  <div className='absolute top-0 right-0 m-4 z-[600]'>
-                    <button
-                      onClick={handleReselectDanmakuSource}
-                      className='flex items-center gap-2 bg-black/80 hover:bg-black/90 backdrop-blur-sm
-                               rounded-lg px-3 py-2 border border-green-500/30 hover:border-green-500/60
-                               transition-all duration-200 group'
-                      title='切换弹幕源'
-                    >
-                      <svg
-                        className='w-4 h-4 text-green-400 group-hover:text-green-300'
-                        fill='none'
-                        stroke='currentColor'
-                        viewBox='0 0 24 24'
-                      >
-                        <path
-                          strokeLinecap='round'
-                          strokeLinejoin='round'
-                          strokeWidth={2}
-                          d='M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4'
-                        />
-                      </svg>
-                      <span className='text-sm font-medium text-green-400 group-hover:text-green-300'>
-                        切换弹幕源
-                      </span>
-                    </button>
-                  </div>
-                )}
+                
               </div>
 
               {/* 第三方应用打开按钮 */}

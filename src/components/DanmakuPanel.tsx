@@ -124,7 +124,7 @@ export default function DanmakuPanel({
   }, [videoTitle, searchKeyword]);
 
   return (
-    <div className='flex h-full flex-col'>
+    <div className='flex h-full flex-col overflow-hidden'>
       {/* 搜索区域 */}
       <div className='mb-4 flex-shrink-0'>
         <div className='flex gap-2'>
@@ -138,22 +138,30 @@ export default function DanmakuPanel({
               }
             }}
             placeholder='输入动漫名称搜索弹幕...'
-            className='flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm
+            className='flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm
                      transition-colors focus:border-green-500 focus:outline-none
                      focus:ring-2 focus:ring-green-500/20
-                     dark:border-gray-600 dark:bg-gray-800 dark:text-white'
+                     dark:border-gray-600 dark:bg-gray-800 dark:text-white
+                     sm:px-4'
             disabled={isSearching}
           />
           <button
             onClick={() => handleSearch(searchKeyword)}
             disabled={isSearching}
-            className='flex items-center gap-2 rounded-lg bg-green-500 px-4 py-2
+            className='flex items-center justify-center gap-2 rounded-lg bg-green-500 px-3 py-2
                      text-sm font-medium text-white transition-colors
                      hover:bg-green-600 disabled:cursor-not-allowed
-                     disabled:opacity-50 dark:bg-green-600 dark:hover:bg-green-700'
+                     disabled:opacity-50 dark:bg-green-600 dark:hover:bg-green-700
+                     sm:px-4 md:gap-2'
           >
-            <MagnifyingGlassIcon className='h-4 w-4' />
-            {isSearching ? '搜索中...' : '搜索'}
+            {isSearching ? (
+              <div className='h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent' />
+            ) : (
+              <MagnifyingGlassIcon className='h-4 w-4' />
+            )}
+            <span className='hidden sm:inline'>
+              {isSearching ? '搜索中...' : '搜索'}
+            </span>
           </button>
         </div>
 
@@ -187,7 +195,7 @@ export default function DanmakuPanel({
       </div>
 
       {/* 内容区域 */}
-      <div className='flex-1 overflow-y-auto'>
+      <div className='flex-1 overflow-y-auto min-h-0'>
         {/* 显示剧集列表 */}
         {selectedAnime && (
           <div className='space-y-2'>
@@ -217,7 +225,7 @@ export default function DanmakuPanel({
 
             {/* 剧集网格 */}
             {!isLoadingEpisodes && episodes.length > 0 && (
-              <div className='grid grid-cols-5 gap-2'>
+              <div className='grid grid-cols-5 gap-2 pb-4'>
                 {episodes.map((episode) => {
                   const isSelected = isEpisodeSelected(episode.episodeId);
                   return (
@@ -250,7 +258,7 @@ export default function DanmakuPanel({
 
         {/* 显示搜索结果 */}
         {!selectedAnime && searchResults.length > 0 && (
-          <div className='space-y-2'>
+          <div className='space-y-2 pb-4'>
             {searchResults.map((anime) => (
               <div
                 key={anime.animeId}
